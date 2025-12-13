@@ -58,7 +58,9 @@
     handleMaxSquare(MaxSquare)
     drawByCells(canvas, cells)
   });
-  function handleCanvasClick(event:MouseEvent, canvas:HTMLCanvasElement, cells:Cells){
+function handleCanvasClick(event:MouseEvent, canvas:HTMLCanvasElement, cells:Cells){
+  event.preventDefault()
+  event.stopPropagation()
   const fcoord = getFieldCoordinateFromEvent(event, canvas)
   const TargetCells = GetTargetCells(cells);
   if (TargetCells.length<3){
@@ -72,6 +74,8 @@
 let dragging = false;
 let draggnigCell: FieldCoordinate | null;
 function onPointerDown(event: MouseEvent | TouchEvent){
+  event.preventDefault()
+  event.stopPropagation()
   draggnigCell = getFieldCoordinateFromEvent(event, canvas);
   const TargetCells = GetTargetCells(cells);
   dragging = false;
@@ -83,10 +87,14 @@ function onPointerDown(event: MouseEvent | TouchEvent){
   }
 }
 function onPointerUp(event: MouseEvent | TouchEvent){
+  event.preventDefault()
+  event.stopPropagation()
   if (draggnigCell) draggnigCell = null;
   if (dragging) dragging = false
 }
 function onPointerMove(event: MouseEvent | TouchEvent){
+  event.preventDefault()
+  event.stopPropagation()
   if (!draggnigCell || !dragging) return
   const currentCell = getFieldCoordinateFromEvent(event, canvas);
   const ForbiddenCells = GetForbiddenCells(cells);

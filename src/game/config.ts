@@ -5,7 +5,7 @@ type Config = {
   lineWidth:number//сколько пикселей толщина линни
   pointWidth:number//сколько пикселей толщина точки
 };
-export let config: Config={
+export const config: Config={
   fieldWidth:16,
   fieldHeight:16,
   cellSize:35,
