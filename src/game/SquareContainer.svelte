@@ -39,7 +39,7 @@
     startToken;
     clear(canvas)
     cells = generateCells();
-    cells = GenerateForbiddenCells(cells, 3);
+    cells = GenerateForbiddenCells(cells, 5);
     handleSquare(0)
     drawByCells(canvas, cells)
   });
@@ -50,7 +50,7 @@
     cells[fcoord.y][fcoord.x] = "1";
     drawPoint(canvas, fcoord);
   };
-  if(GetTargetCells(cells).length == 5){
+  if(GetTargetCells(cells).length == 3){
     Count()
   }
 };
