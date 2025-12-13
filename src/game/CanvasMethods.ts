@@ -8,12 +8,30 @@ type CtxCoordinate = {
   x:number,
   y:number,
 };
-export function getFieldCoordinateFromEvent(event:MouseEvent, canvas:HTMLCanvasElement):FieldCoordinate{
+export function getFieldCoordinateFromEvent(event:MouseEvent | TouchEvent, canvas:HTMLCanvasElement):FieldCoordinate{
   const rect = canvas.getBoundingClientRect();
-  const x = event.clientX - rect.left;
-  const y = event.clientY - rect.top;
-  const cellX = Math.floor(x / config.cellSize);
-  const cellY = Math.floor(y / config.cellSize);
+
+  let clientX: number;
+  let clientY: number;
+
+  if (event instanceof MouseEvent) {
+    clientX = event.clientX;
+    clientY = event.clientY;
+  } else {
+    const touch = event.touches[0] ?? event.changedTouches[0];
+    clientX = touch.clientX;
+    clientY = touch.clientY;
+  }
+
+  const x = clientX - rect.left;
+  const y = clientY - rect.top;
+
+  let cellX = Math.floor(x / config.cellSize);
+  if (cellX<0) {cellX = 0};
+  if (cellX>15) {cellX = 15};
+  let cellY = Math.floor(y / config.cellSize);
+  if (cellY<0) {cellY = 0};
+  if (cellY>15) {cellY = 15};
   return {x: cellX, y: cellY}
 };
 function getCtxCoordinate(fcoord:FieldCoordinate):CtxCoordinate{
@@ -135,4 +153,7 @@ export function drawByCells(canvas: HTMLCanvasElement, cells: Cells){
   for (let ForbiddenCell of ForbiddenCells){
     drawForbiddenPoint(canvas, ForbiddenCell)
   }
+};
+export function cellsEquality(cell1:FieldCoordinate, cell2: FieldCoordinate): boolean{
+  return (cell1.x == cell2.x && cell1.y == cell2.y);
 };

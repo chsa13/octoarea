@@ -2,8 +2,8 @@
   let {startToken, resetToken, countToken, handleSquare, handleMaxSquare} = $props()
   import { onMount } from "svelte";
   import { config } from "./config";
-  import { drawField, setupCanvas, clear, drawTriangel, drawByCells, drawPoint, getFieldCoordinateFromEvent } from "./CanvasMethods";
-  import { checkForbiddenCellsNotInTriangelFromCells, clearTargetCells, generateCells, GenerateForbiddenCells, GetMaxSquare, getSquareFromCoordinates, GetTargetCells, type Cells } from "./MathMethods";
+  import { drawField, setupCanvas, clear, drawTriangel, drawByCells, drawPoint, getFieldCoordinateFromEvent, type FieldCoordinate, cellsEquality } from "./CanvasMethods";
+  import { checkForbiddenCellsNotInTriangelFromCells, clearTargetCells, generateCells, GenerateForbiddenCells, GetForbiddenCells, GetMaxSquare, getSquareFromCoordinates, GetTargetCells, type Cells } from "./MathMethods";
   let canvas:HTMLCanvasElement;
   let ctx: CanvasRenderingContext2D | null = null
   let cells: Cells = generateCells();
@@ -57,6 +57,38 @@
     Count()
   }
 };
+let draggnig = false;
+let draggnigCell: FieldCoordinate | null;
+function onPointerDown(event: MouseEvent | TouchEvent){
+  draggnigCell = getFieldCoordinateFromEvent(event, canvas);
+  draggnig = true
+}
+function onPointerUp(event: MouseEvent | TouchEvent){
+  if (draggnigCell) draggnigCell = null;
+  if (draggnig) draggnig = false
+}
+function onPointerMove(event: MouseEvent | TouchEvent){
+  console.log(draggnigCell)
+  if (!draggnigCell) return
+  const currentCell = getFieldCoordinateFromEvent(event, canvas);
+  const ForbiddenCells = GetForbiddenCells(cells);
+  const TargetCells = GetTargetCells(cells);
+  if (!cellsEquality(draggnigCell, currentCell)){
+    for(let ForbiddenCell of ForbiddenCells){
+      if (cellsEquality(ForbiddenCell, currentCell)){return}
+    }
+    for(let TargetCell of TargetCells){
+      if (cellsEquality(TargetCell, currentCell)){return}
+    }
+    cells[draggnigCell.y][draggnigCell.x] = ""
+    cells[currentCell.y][currentCell.x] = "1"
+    draggnigCell.x = currentCell.x
+    draggnigCell.y = currentCell.y
+    clear(canvas)
+    drawByCells(canvas, cells);
+    Count()
+  }
+}
 </script>
 <style>
   canvas{
@@ -66,4 +98,12 @@
 <canvas 
   bind:this={canvas}
   onclick= {(event)=>{handleCanvasClick(event, canvas, cells)}}
+  onmousedown={onPointerDown}
+  onmousemove={onPointerMove}
+  onmouseup={onPointerUp}
+  onmouseleave={onPointerUp}
+  ontouchstart={onPointerDown}
+  ontouchmove={onPointerMove}
+  ontouchend={onPointerUp}
+  ontouchcancel={onPointerUp}
 ></canvas>
