@@ -5,23 +5,28 @@ type Config = {
   lineWidth:number//сколько пикселей толщина линни
   pointWidth:number//сколько пикселей толщина точки
 };
-export const config: Config={
-  fieldWidth:16,
-  fieldHeight:16,
-  cellSize:35,
-  lineWidth:2,
-  pointWidth:4,
-};
-// где-нибудь после инициализации окна (например, в onMount)
-// export function updateCellSize() {
-//   if (typeof window === 'undefined') return;
-// 
-//   const size = Math.floor(
-//     Math.min(
-//       window.innerWidth-20 / config.fieldWidth,
-//       window.innerHeight-20 / config.fieldHeight
-//     )
-//   );
-// 
-//   config.cellSize = size;
-// }
+export function createConfig(): Config {
+  const fieldWidth = 16;
+  const fieldHeight = 16;
+
+  const isBrowser = typeof window !== 'undefined';
+
+  const cellSize = isBrowser
+    ? Math.floor(
+        Math.min(
+          (window.innerWidth-50) / fieldWidth,
+          (window.innerHeight-200) / fieldHeight
+        )
+      )
+    : 35;
+
+  return {
+    fieldWidth,
+    fieldHeight,
+    cellSize,
+    lineWidth: 2,
+    pointWidth: 4,
+  };
+}
+
+export const config = createConfig();
