@@ -62,17 +62,24 @@ function checkForbiddenCellNotInTriangel( ForbiddenCell:FieldCoordinate,
   getSquareFromCoordinates(ForbiddenCell, TargetCell1, TargetCell3) + 
   getSquareFromCoordinates(ForbiddenCell, TargetCell1, TargetCell2));
 };
-export function checkForbiddenCellsNotInTriangel(cells: Cells):boolean{
-  let ans: boolean = true;
-  let ForbiddenCells = GetForbiddenCells(cells);
-  let TargetCells = GetTargetCells(cells);
+export function checkForbiddenCellsNotInTriangel( ForbiddenCells: FieldCoordinate[],
+                                                  TargetCell1: FieldCoordinate, 
+                                                  TargetCell2: FieldCoordinate, 
+                                                  TargetCell3: FieldCoordinate, 
+                                                  ): boolean{
+  let ans:boolean = true;
   for(let ForbiddenCell of ForbiddenCells){
-    if (!checkForbiddenCellNotInTriangel(ForbiddenCell, TargetCells[0], TargetCells[1], TargetCells[2])){
+    if (!checkForbiddenCellNotInTriangel(ForbiddenCell, TargetCell1, TargetCell2, TargetCell3)){
       ans = false;
       break;
     };
   }
   return ans;
+}
+export function checkForbiddenCellsNotInTriangelFromCells(cells: Cells):boolean{
+  let ForbiddenCells = GetForbiddenCells(cells);
+  let TargetCells = GetTargetCells(cells);
+  return checkForbiddenCellsNotInTriangel(ForbiddenCells, TargetCells[0], TargetCells[1], TargetCells[2]);
 };
 export function clearTargetCells(cells: Cells): Cells{
   let TargetCells = GetTargetCells(cells);
@@ -80,4 +87,39 @@ export function clearTargetCells(cells: Cells): Cells{
     cells[TargetCell.y][TargetCell.x] = ""
   }
   return cells
+}
+export function GetMaxSquare(cells: Cells): number{
+  let ans: number = 0;
+  let dots: FieldCoordinate[]= [];
+  const ForbiddenCells = GetForbiddenCells(cells);
+  for(let x1 = 0; x1<config.fieldHeight; x1++){
+    for(let y1 = 0; y1<config.fieldWidth; y1++){
+      for(let x2 = 0; x2<config.fieldHeight; x2++){
+        for(let y2 = 0; y2<config.fieldWidth; y2++){
+          for(let x3 = 0; x3<config.fieldHeight; x3++){
+            for(let y3 = 0; y3<config.fieldWidth; y3++){
+              if (checkForbiddenCellsNotInTriangel(ForbiddenCells, 
+                {x:x1, y:y1},
+                {x:x2, y:y2},
+                {x:x3, y:y3},
+              )){
+                const sq = getSquareFromCoordinates(  {x:x1, y:y1},
+                                                      {x:x2, y:y2},
+                                                      {x:x3, y:y3})
+                if (sq>ans){
+                  dots = []
+                  dots.push({x:x1, y:y1})
+                  dots.push({x:x2, y:y2})
+                  dots.push({x:x3, y:y3})
+                  ans = sq
+                }
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+  console.log(dots)
+  return ans;
 }

@@ -8,7 +8,7 @@ type Config = {
 export let config: Config={
   fieldWidth:16,
   fieldHeight:16,
-  cellSize:40,
+  cellSize:35,
   lineWidth:2,
   pointWidth:2,
 };

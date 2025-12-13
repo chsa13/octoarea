@@ -9,6 +9,8 @@
   function handleCount(){countToken+=1}
   let square = 0
   function handleSquare(x:number){square=x}
+  let MaxSquare = 0
+  function handleMaxSquare(x:number){MaxSquare=x}
 </script>
 <div>
   <ControlsContainer
@@ -16,11 +18,13 @@
     onReset={handleReset}
     onCount={handleCount}
     square ={square}
+    MaxSquare ={MaxSquare}
   />
   <SquareContainer
     {startToken}
     {resetToken}
     {countToken}
     {handleSquare}
+    {handleMaxSquare}
   />
 </div>

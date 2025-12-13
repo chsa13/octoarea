@@ -1,15 +1,15 @@
 <script lang="ts">
-  let {startToken, resetToken, countToken, handleSquare} = $props()
+  let {startToken, resetToken, countToken, handleSquare, handleMaxSquare} = $props()
   import { onMount } from "svelte";
   import { config } from "./config";
   import { drawField, setupCanvas, clear, drawTriangel, drawByCells, drawPoint, getFieldCoordinateFromEvent } from "./CanvasMethods";
-  import { checkForbiddenCellsNotInTriangel, clearTargetCells, generateCells, GenerateForbiddenCells, getSquareFromCoordinates, GetTargetCells, type Cells } from "./MathMethods";
+  import { checkForbiddenCellsNotInTriangelFromCells, clearTargetCells, generateCells, GenerateForbiddenCells, GetMaxSquare, getSquareFromCoordinates, GetTargetCells, type Cells } from "./MathMethods";
   let canvas:HTMLCanvasElement;
   let ctx: CanvasRenderingContext2D | null = null
   let cells: Cells = generateCells();
   function Count(){
     let targetCells = GetTargetCells(cells);
-    if (targetCells.length == 3 && checkForbiddenCellsNotInTriangel(cells)){
+    if (targetCells.length == 3 && checkForbiddenCellsNotInTriangelFromCells(cells)){
         let square = getSquareFromCoordinates(targetCells[0], targetCells[1], targetCells[2])
         handleSquare(square)
         drawTriangel(canvas, targetCells[0], targetCells[1], targetCells[2]);
@@ -39,8 +39,11 @@
     startToken;
     clear(canvas)
     cells = generateCells();
-    cells = GenerateForbiddenCells(cells, 5);
+    cells = GenerateForbiddenCells(cells, 8);
     handleSquare(0)
+    const MaxSquare = GetMaxSquare(cells);
+    handleMaxSquare(MaxSquare)
+    console.log(MaxSquare)
     drawByCells(canvas, cells)
   });
   function handleCanvasClick(event:MouseEvent, canvas:HTMLCanvasElement, cells:Cells){

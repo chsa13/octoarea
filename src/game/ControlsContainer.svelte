@@ -1,5 +1,5 @@
 <script lang="ts">
-  let {onStart, onReset, onCount, square} = $props();
+  let {onStart, onReset, onCount, square, MaxSquare} = $props();
 </script>
 <button
   onclick={onStart}
@@ -18,4 +18,8 @@
 </button> -->
 <div>
   Площадь: {square}
+</div>
+
+<div>
+  Максимальная площадь: {MaxSquare}
 </div>
