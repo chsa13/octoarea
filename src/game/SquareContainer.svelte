@@ -50,7 +50,7 @@
     cells[fcoord.y][fcoord.x] = "1";
     drawPoint(canvas, fcoord);
   };
-  if(GetTargetCells(cells).length == 3){
+  if(GetTargetCells(cells).length == 5){
     Count()
   }
 };
