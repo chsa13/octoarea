@@ -1,5 +1,5 @@
 import type { FieldCoordinate } from "./CanvasMethods"
-import { encodePoints, decodePoints } from "./Coding";
+import { encodePoints, decodePoints } from "./Сoding";
 import { config } from "./config";
 export type Cells=String[][]
 export function generateCells():Cells{
