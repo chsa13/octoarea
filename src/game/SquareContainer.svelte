@@ -73,6 +73,7 @@
     const code = encodePoints(ForbiddenCells);
     handleSquare(0);
     MaxSquare = GetMaxSquare(cells);
+    // console.log(GetMaxSquare2(cells))
     handleMaxSquare(MaxSquare);
     drawByCells(canvas, cells);
   });

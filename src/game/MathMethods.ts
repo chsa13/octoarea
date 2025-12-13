@@ -99,40 +99,87 @@ export function clearTargetCells(cells: Cells): Cells{
   }
   return cells
 }
+// export function GetMaxSquare2(cells: Cells): number{
+//   // console.time("a")
+//   let ans: number = 0;
+//   let dots: FieldCoordinate[]= [];
+//   const ForbiddenCells = GetForbiddenCells(cells);
+//   for(let x1 = 0; x1<config.fieldHeight; x1++){
+//     for(let y1 = 0; y1<config.fieldWidth; y1++){
+//       for(let x2 = 0; x2<config.fieldHeight; x2++){
+//         for(let y2 = 0; y2<config.fieldWidth; y2++){
+//           for(let x3 = 0; x3<config.fieldHeight; x3++){
+//             for(let y3 = 0; y3<config.fieldWidth; y3++){
+//               if (checkForbiddenCellsNotInTriangel(ForbiddenCells, 
+//                 {x:x1, y:y1},
+//                 {x:x2, y:y2},
+//                 {x:x3, y:y3},
+//               )){
+//                 const sq = getSquareFromCoordinates(  {x:x1, y:y1},
+//                                                       {x:x2, y:y2},
+//                                                       {x:x3, y:y3})
+//                 if (sq>ans){
+//                   dots = []
+//                   dots.push({x:x1, y:y1})
+//                   dots.push({x:x2, y:y2})
+//                   dots.push({x:x3, y:y3})
+//                   ans = sq
+//                 }
+//               };
+//             };
+//           };
+//         };
+//       };
+//     };
+//   };
+//   // console.timeEnd("a")
+//   console.log(dots)
+//   return ans;
+// }
 export function GetMaxSquare(cells: Cells): number{
-  // console.time("a")
-  let ans: number = 0;
-  let dots: FieldCoordinate[]= [];
   const ForbiddenCells = GetForbiddenCells(cells);
-  for(let x1 = 0; x1<config.fieldHeight; x1++){
-    for(let y1 = 0; y1<config.fieldWidth; y1++){
-      for(let x2 = 0; x2<config.fieldHeight; x2++){
-        for(let y2 = 0; y2<config.fieldWidth; y2++){
-          for(let x3 = 0; x3<config.fieldHeight; x3++){
-            for(let y3 = 0; y3<config.fieldWidth; y3++){
-              if (checkForbiddenCellsNotInTriangel(ForbiddenCells, 
-                {x:x1, y:y1},
-                {x:x2, y:y2},
-                {x:x3, y:y3},
-              )){
-                const sq = getSquareFromCoordinates(  {x:x1, y:y1},
-                                                      {x:x2, y:y2},
-                                                      {x:x3, y:y3})
-                if (sq>ans){
-                  dots = []
-                  dots.push({x:x1, y:y1})
-                  dots.push({x:x2, y:y2})
-                  dots.push({x:x3, y:y3})
-                  ans = sq
-                }
-              };
-            };
+  const w = config.fieldWidth
+  const h = config.fieldHeight
+  let ans: number = h*w/2/ForbiddenCells.length;
+  let dots: FieldCoordinate[]=[];
+  for(let a=0; a < w*h; a++){
+  if ((w-1)*(h-1-(~~a/w)) <= 2*ans) {
+    break;
+  }
+    for(let b=a+1; b < w*h; b++){
+    for(let c=b+1; c < w*h; c++){
+      const x1=a%w
+    const y1=~~(a/w)
+    const x2=b%w
+    const y2=~~(b/w)
+    const x3=c%w
+    const y3=~~(c/w)
+    if ((x1 == x2 && x2 == x3) || (y1 == y2 && y2 == y3)) {
+      continue;
+    }
+    const sq = getSquareFromCoordinates(  {x:x1, y:y1},
+                                              {x:x2, y:y2},
+                                              {x:x3, y:y3})
+    if (sq > ans){
+          if (checkForbiddenCellsNotInTriangel(ForbiddenCells, 
+            {x:x1, y:y1},
+            {x:x2, y:y2},
+            {x:x3, y:y3},
+          )){
+            dots = []
+            dots.push({x:x1, y:y1})
+            dots.push({x:x2, y:y2})
+            dots.push({x:x3, y:y3})
+            ans = sq
+      if (ans == (h-1)*(w-1)/2) {
+        console.log(dots)
+        return ans;
+      }
           };
-        };
+        }
       };
     };
   };
-  // console.timeEnd("a")
   console.log(dots)
   return ans;
 }
