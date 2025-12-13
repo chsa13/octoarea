@@ -29,6 +29,7 @@
     }
   }
   onMount(()=>{
+    // updateCellSize()
     ctx = setupCanvas(canvas, config.fieldWidth*config.cellSize, config.fieldHeight*config.cellSize);
     if (!ctx){
       return;

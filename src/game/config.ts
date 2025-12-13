@@ -12,3 +12,16 @@ export const config: Config={
   lineWidth:2,
   pointWidth:4,
 };
+// где-нибудь после инициализации окна (например, в onMount)
+// export function updateCellSize() {
+//   if (typeof window === 'undefined') return;
+// 
+//   const size = Math.floor(
+//     Math.min(
+//       window.innerWidth-20 / config.fieldWidth,
+//       window.innerHeight-20 / config.fieldHeight
+//     )
+//   );
+// 
+//   config.cellSize = size;
+// }
