@@ -27,10 +27,10 @@
   </button>
   <div class = "text-cont">
     <div>
-      Текущая площадь: {square}
+      Текущая площадь: {square*2}
     </div>
     <div>
-      Возможная площадь: {MaxSquare}
+      Возможная площадь: {MaxSquare*2}
     </div>
   </div>
 </div>
