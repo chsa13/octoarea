@@ -5,6 +5,7 @@
   .text-cont{
     display: flex;
     justify-content: space-between;
+    font-size: 15px;
   }
 </style>
 <div>
