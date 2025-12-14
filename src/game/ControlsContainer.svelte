@@ -29,27 +29,43 @@ button{
 button:active{
   transform: translateY(1px);
 }
-.contb{
+.conta{
   display: inline-flex;
   padding-right: 16px;
 }
+.contb{
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+  font-style: italic;
+}
 .cont{
-  padding-top:8px;
+  display: grid;
+  grid-template-columns: repeat(2,auto);
+  grid-template-rows: repeat(2, min-content);
+  /* gap: 12px; */
+  place-content: center;
+  margin: 8px;
+  /* padding-top:8px; */
 }
 
 </style>
 <div class="cont">
-  <div class = "contb">
+  <div class = "conta">
     <button
       onclick={onNew}
     >
       Новая игра
     </button>
-</div>
+  </div>
   <button
-    onclick={onCopy}
-    title="Будет скопированна сслыка на игру"
+  onclick={onCopy}
+  title="Будет скопированна сслыка на игру"
   >
-    Поделиться игрой
-  </button>
+  Поделиться игрой
+</button>
+<div></div>
+<div class = "contb">
+  <div>(Будет скопированна сслыка)</div>
+</div>
 </div>
