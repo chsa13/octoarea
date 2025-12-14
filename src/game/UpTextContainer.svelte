@@ -5,7 +5,7 @@
   .text-cont{
     display: flex;
     justify-content: space-between;
-    font-size: 15px;
+    font-size: 14px;
     padding-bottom: 8px;
   }
   @media(width<400px){
