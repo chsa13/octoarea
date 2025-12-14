@@ -63,7 +63,9 @@
 //     countToken;
 //     Count()
 //   });
-  function Start(key:string|null){
+  function Start(key?:string|null|undefined){
+    clear(canvas)
+    cells = generateCells();
     cells = GenerateForbiddenCells(cells, 16, key);
     const ForbiddenCells = GetForbiddenCells(cells);
       for (let ForbiddenCell in ForbiddenCells){
@@ -82,38 +84,16 @@
   $effect(() => {
     if (!ctx || !startToken) return;
     startToken;
-    clear(canvas)
-    cells = generateCells();
-
     const key = getQuery("k");
-    cells = GenerateForbiddenCells(cells, 16, key);
-    const ForbiddenCells = GetForbiddenCells(cells);
-    const code = encodePoints(ForbiddenCells);
-    handleSquare(0);
-    MaxSquare = GetMaxSquare(cells);
-    handleMaxSquare(MaxSquare);
-    drawByCells(canvas, cells);
+    const code = Start(key);
+    if (!key){
+      setQuery("k", code);
+    }
   });
   $effect(() => {
     if (!ctx || !newToken) return;
-    newToken;
-    clear(canvas)
-    cells = generateCells();
-    cells = GenerateForbiddenCells(cells, 16, null);
-    const ForbiddenCells = GetForbiddenCells(cells);
-      for (let ForbiddenCell in ForbiddenCells){
-      const x = ForbiddenCells[ForbiddenCell].x
-      const y = ForbiddenCells[ForbiddenCell].y
-      ForbiddenCells[ForbiddenCell].x = y
-      ForbiddenCells[ForbiddenCell].y = x
-    }
-    const code = encodePoints(ForbiddenCells);
+    const code = Start();
     setQuery("k", code);
-    handleSquare(0);
-    MaxSquare = GetMaxSquare(cells);
-    // console.log(GetMaxSquare2(cells))
-    handleMaxSquare(MaxSquare);
-    drawByCells(canvas, cells);
   });
 function handleCanvasClick(event:MouseEvent, canvas:HTMLCanvasElement, cells:Cells){
   const fcoord = getFieldCoordinateFromEvent(event, canvas)
