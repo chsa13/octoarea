@@ -98,6 +98,10 @@
 function handleCanvasClick(event:MouseEvent, canvas:HTMLCanvasElement, cells:Cells){
   const fcoord = getFieldCoordinateFromEvent(event, canvas)
   const TargetCells = GetTargetCells(cells);
+  const ForbiddenCells = GetForbiddenCells(cells);
+  for(let ForbiddenCell of ForbiddenCells){
+      if (cellsEquality(ForbiddenCell, fcoord)){return};
+  };
   if (TargetCells.length<3){
     cells[fcoord.y][fcoord.x] = "1";
     drawPoint(canvas, fcoord);
