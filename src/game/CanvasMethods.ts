@@ -111,7 +111,7 @@ export function drawForbiddenPoint(canvas: HTMLCanvasElement, coord:FieldCoordin
   const ccoord = getCtxCoordinate(coord);
   ctx.fillStyle = '#ff0000ff';
   ctx.beginPath();
-  ctx.arc(ccoord.x, ccoord.y, config.pointWidth/2, 0, Math.PI * 2);
+  ctx.arc(ccoord.x, ccoord.y, config.pointWidth, 0, Math.PI * 2);
   ctx.fill();
 };
 export function drawLine(canvas: HTMLCanvasElement, fcoord1:FieldCoordinate, fcoord2:FieldCoordinate){
