@@ -185,7 +185,10 @@ export function drawByCells(canvas: HTMLCanvasElement, cells: Cells){
 };
 export function cellsEquality(cell1:FieldCoordinate|null, cell2: FieldCoordinate|null): boolean{
   if ((cell1===null || cell2===null) && cell1!=cell2){
-    retrun false;
+    return false;
   };
-  return (cell1.x == cell2.x && cell1.y == cell2.y);
+  if (cell1 && cell2){
+     return (cell1.x == cell2.x && cell1.y == cell2.y); 
+  }
+  return false;
 };
