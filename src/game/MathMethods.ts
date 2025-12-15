@@ -52,6 +52,7 @@ export function GenerateForbiddenCells(cells: Cells, quantity:number, key:string
   console.log(key)
   if (key){
     let arr = decodePoints(key)
+    if (!arr){return GenerateForbiddenCells(cells, quantity, "")}
     for (let f of arr){
       cells[f.x][f.y] = '-1'
     }
@@ -63,7 +64,7 @@ export function GenerateForbiddenCells(cells: Cells, quantity:number, key:string
       cells[x][y] = "-1"
       arr.push({x:x, y:y})
     }
-    console.log(encodePoints(arr))
+    // console.log(encodePoints(arr))
     if (arr.length !=16){
       return GenerateForbiddenCells(cells, quantity, key)
     }

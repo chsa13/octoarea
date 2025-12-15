@@ -46,28 +46,32 @@ export function encodePoints(
 // строка -> points
 export function decodePoints(
   code: string,
-): FieldCoordinate[] {
-  const W = config.fieldWidth;
-  const H = config.fieldHeight;
+): FieldCoordinate[]|null {
+  try{
 
-  const b64 = fromBase64Url(code);
-  const hex = atob(b64);
-
-  if (hex.length % 2 !== 0) {
-    throw new Error('invalid code length');
-  }
-
-  const points: FieldCoordinate[] = [];
-
-  for (let i = 0; i < hex.length; i += 2) {
-    const p = hexToByte(hex[i], hex[i + 1]);
-    if (p < 0 || p >= W * H) {
-      throw new Error('encoded point out of range for this config');
+    const W = config.fieldWidth;
+    const H = config.fieldHeight;
+  
+    const b64 = fromBase64Url(code);
+    const hex = atob(b64);
+  
+    if (hex.length % 2 !== 0) {
+      throw new Error('invalid code length');
     }
-    const x = p % W;
-    const y = Math.floor(p / W);
-    points.push({ x, y });
+  
+    const points: FieldCoordinate[] = [];
+  
+    for (let i = 0; i < hex.length; i += 2) {
+      const p = hexToByte(hex[i], hex[i + 1]);
+      if (p < 0 || p >= W * H) {
+        throw new Error('encoded point out of range for this config');
+      }
+      const x = p % W;
+      const y = Math.floor(p / W);
+      points.push({ x, y });
+    }
+  
+    return points;
   }
-
-  return points;
+  catch{return null}
 }
