@@ -110,12 +110,9 @@ function onPointerMove(event: MouseEvent | TouchEvent){
   const ForbiddenCells = GetForbiddenCells(cells);
   const TargetCells = GetTargetCells(cells);
   for(let TargetCell of TargetCells){
-    if (cellsEquality(TargetCell, currentCell)){canvas.style.cursor = "grab" return}
+    if (cellsEquality(TargetCell, currentCell)){canvas.style.cursor = "grab"; return}
   }
   if (!cellsEquality(draggnigCell, currentCell)){
-    for(let ForbiddenCell of ForbiddenCells){
-      if (cellsEquality(ForbiddenCell, currentCell)){return}
-    }
     for(let TargetCell of TargetCells){
       if (cellsEquality(TargetCell, currentCell)){return}
     }
