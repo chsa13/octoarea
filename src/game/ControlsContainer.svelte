@@ -11,7 +11,7 @@ button{
 
   box-shadow: 0 1px 0 rgba(0,0,0,.18), 0 6px 18px rgba(0,0,0,.18);;
 
-  padding: 4px 14px;
+  padding: 5px 14px;
   font: 600 14px/1.1 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   letter-spacing: 0.02em;
   text-transform: none;
@@ -46,7 +46,7 @@ button:active{
 <div class="cont">
   <div class="row">
     <button onclick={onNew}>Новая игра</button>
-    <button onclick={onReset}>Очистить</button>
+    <button onclick={onReset}>Начать заново</button>
   </div>
   <div class="row">
     <button onclick={onCopy} title="Будет скопированна сслыка на игру">Скопировать ссылку на расклад</button>
