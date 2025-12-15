@@ -1,4 +1,4 @@
-import { config } from "./config";
+import { config } from "../lib/config";
 import { GetForbiddenCells, GetTargetCells, type Cells } from "./MathMethods"
 export type FieldCoordinate = {
   x:number,

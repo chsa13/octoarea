@@ -1,6 +1,6 @@
 import type { FieldCoordinate } from "./CanvasMethods"
 import { encodePoints, decodePoints } from "./Сoding";
-import { config } from "./config";
+import { config } from "../lib/config";
 export type Cells=String[][]
 export function generateCells():Cells{
   let cells: Cells = [];

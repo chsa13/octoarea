@@ -1,17 +1,17 @@
 <script lang="ts">
-  let {onNew, onCopy} = $props();
+  let {onNew, onReset, onCopy} = $props();
 </script>
 <style>
 button{
   appearance: none;
-  border: 1px solid black;
-  border-radius: 2px;               /* угловато */
-  background: rgb(255, 239, 239);
+  border: 1px solid rgba(0, 0, 0, 0.563);
+  border-radius: 5px;               /* угловато */
+  background: rgb(231, 231, 231);
   color: black;
 
   box-shadow: 0 1px 0 rgba(0,0,0,.18), 0 6px 18px rgba(0,0,0,.18);;
 
-  padding: 7px 14px;
+  padding: 4px 14px;
   font: 600 14px/1.1 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   letter-spacing: 0.02em;
   text-transform: none;
@@ -29,43 +29,24 @@ button{
 button:active{
   transform: translateY(1px);
 }
-.conta{
-  display: inline-flex;
-  padding-right: 16px;
-}
-.contb{
+.cont{
   display: flex;
   flex-direction: column;
-  font-size: 11px;
-  font-style: italic;
+  width: 100%;
 }
-.cont{
-  display: grid;
-  grid-template-columns: repeat(2,auto);
-  grid-template-rows: repeat(2, min-content);
-  /* gap: 12px; */
-  place-content: center;
-  margin: 8px;
-  /* padding-top:8px; */
+.row{
+  width: 100%;
+  justify-content: space-evenly;
+  display: flex;
+  padding-bottom: 8px;
 }
-
 </style>
 <div class="cont">
-  <div class = "conta">
-    <button
-      onclick={onNew}
-    >
-      Новая игра
-    </button>
+  <div class="row">
+    <button onclick={onReset}>Отчистить</button>
+    <button onclick={onNew}>Новая игра</button>
   </div>
-  <button
-  onclick={onCopy}
-  title="Будет скопированна сслыка на игру"
-  >
-  Поделиться раскладом
-</button>
-<div></div>
-<div class = "contb">
-  <div>(Будет скопированна сслыка)</div>
-</div>
+  <div class="row">
+    <button onclick={onCopy} title="Будет скопированна сслыка на игру">Скопировать ссылку на расклад</button>
+  </div>
 </div>

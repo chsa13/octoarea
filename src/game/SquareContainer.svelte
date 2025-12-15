@@ -1,7 +1,7 @@
 <script lang="ts">
-  let {newToken,copyToken, handleSquare, handleMaxSquare} = $props()
+  let {newToken,copyToken,resetToken, handleSquare, handleMaxSquare} = $props()
   import { onMount } from "svelte";
-  import { config } from "./config";
+  import { config } from "../lib/config";
   import { drawField, setupCanvas, clear, drawTriangel, drawByCells, drawPoint, getFieldCoordinateFromEvent, type FieldCoordinate, cellsEquality, drawForbiddenPoint } from "./CanvasMethods";
   import { checkForbiddenCellsNotInTriangelFromCells, clearTargetCells, generateCells, GenerateForbiddenCells, GetForbiddenCells, GetMaxSquare, getSquareFromCoordinates, GetTargetCells, type Cells } from "./MathMethods";
   import { encodePoints } from "./Сoding";
@@ -61,6 +61,13 @@
     return code
   }
   $effect(() => {
+    if (!ctx || !resetToken) return;
+    resetToken;
+    clear(canvas);
+    cells = clearTargetCells(cells);
+    drawByCells(canvas, cells);
+  });
+  $effect(() => {
     if (!ctx || !copyToken) return;
     copyToken;
     const url = getCurrentUrl();
@@ -103,7 +110,7 @@ function onPointerDown(event: MouseEvent | TouchEvent){
 function onPointerUp(event: MouseEvent | TouchEvent){
   if (draggnigCell) draggnigCell = null;
   if (dragging) dragging = false
-  canvas.style.cursor = "default"
+  canvas.style.cursor = "grab"
 }
 function onPointerMove(event: MouseEvent | TouchEvent){
   const currentCell = getFieldCoordinateFromEvent(event, canvas);

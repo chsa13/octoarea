@@ -1,5 +1,5 @@
 import type { FieldCoordinate } from "./CanvasMethods";
-import { config } from "./config";
+import { config } from "../lib/config";
 function byteToHex(n: number): string {
   return n.toString(16).padStart(2, '0');
 }
