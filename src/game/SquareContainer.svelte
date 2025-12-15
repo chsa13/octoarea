@@ -121,6 +121,9 @@ function onPointerMove(event: MouseEvent | TouchEvent){
     for(let TargetCell of TargetCells){
       if (cellsEquality(TargetCell, currentCell)){return}
     }
+    for(let ForbiddenCell of ForbiddenCells){
+      if (cellsEquality(ForbiddenCell, currentCell)){return}
+    }
     if (!draggnigCell || !dragging) return
     cells[draggnigCell.y][draggnigCell.x] = ""
     cells[currentCell.y][currentCell.x] = "1"
