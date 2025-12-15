@@ -18,13 +18,14 @@
     if (targetCells.length == 3){
       if (checkForbiddenCellsNotInTriangelFromCells(cells)){
         const square = getSquareFromCoordinates(targetCells[0], targetCells[1], targetCells[2])
+        handleSquare(square)
         if (MaxSquare == square){
-          handleSquare(square)
           drawTriangel(canvas, targetCells[0], targetCells[1], targetCells[2], "max");
 
         }
-        handleSquare(square)
-        drawTriangel(canvas, targetCells[0], targetCells[1], targetCells[2], "normal");
+        else{
+          drawTriangel(canvas, targetCells[0], targetCells[1], targetCells[2], "normal");
+        }
       } else {
         handleSquare(0);
         drawTriangel(canvas, targetCells[0], targetCells[1], targetCells[2], "forbidden");

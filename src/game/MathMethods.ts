@@ -187,6 +187,6 @@ export function GetMaxSquare(cells: Cells): number{
       };
     };
   };
-  //console.log(dots)
+  console.log(dots)
   return ans;
 }

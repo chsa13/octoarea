@@ -13,7 +13,7 @@
     width: min-content;
     margin: 0 auto;
   }
-  @media(width > 750px){
+  @media(width > 820px){
     .game-layout{
       flex-direction: row-reverse;
       /* flex-direction: row; */

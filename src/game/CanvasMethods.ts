@@ -143,7 +143,7 @@ export function drawTriangel(canvas: HTMLCanvasElement, fcoord1:FieldCoordinate,
   drawLine(canvas, fcoord3, fcoord1);
   let color = "";
   if (type){
-    if (type == "max"){color = 'rgba(154, 255, 128, 0.91)'};
+    if (type == "max"){color = 'rgba(66, 192, 34, 0.91)'};
     if (type == "normal"){color = 'rgba(6, 70, 122, 0.5)'};
     if (type == "forbidden"){color = 'rgba(255, 0, 0, 0.5)'};
     fillTriangel(canvas, fcoord1, fcoord2, fcoord3, color)
