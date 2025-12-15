@@ -103,10 +103,9 @@ function onPointerDown(event: MouseEvent | TouchEvent){
 function onPointerUp(event: MouseEvent | TouchEvent){
   if (draggnigCell) draggnigCell = null;
   if (dragging) dragging = false
-  canvas.style.cursor = "pointer"
+  canvas.style.cursor = "default"
 }
 function onPointerMove(event: MouseEvent | TouchEvent){
-  if (!draggnigCell || !dragging) return
   const currentCell = getFieldCoordinateFromEvent(event, canvas);
   const ForbiddenCells = GetForbiddenCells(cells);
   const TargetCells = GetTargetCells(cells);
@@ -117,6 +116,7 @@ function onPointerMove(event: MouseEvent | TouchEvent){
     for(let TargetCell of TargetCells){
       if (cellsEquality(TargetCell, currentCell)){return}
     }
+    if (!draggnigCell || !dragging) return
     cells[draggnigCell.y][draggnigCell.x] = ""
     cells[currentCell.y][currentCell.x] = "1"
     draggnigCell.x = currentCell.x
@@ -124,6 +124,9 @@ function onPointerMove(event: MouseEvent | TouchEvent){
     clear(canvas)
     drawByCells(canvas, cells);
     Count()
+  }
+  else{
+    canvas.style.cursor = "grab"
   }
 }
 </script>
