@@ -10,7 +10,7 @@
   }
   @media(width<400px){
     .text-cont{
-      height: 45px;
+      /* height: 45px; */
       align-items: flex-end;
     }
   }
