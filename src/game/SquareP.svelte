@@ -15,6 +15,6 @@
 </style>
 
 <p class:mobile={$isMobile}>
-  <span>{text}: </span>
-  <span>{square*2}</span>
+  <span>{text}:&nbsp;</span>
+  <span> {square*2}</span>
 </p>
