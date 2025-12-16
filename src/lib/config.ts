@@ -25,8 +25,8 @@ export function createConfig(): Config {
   const cellSize = isBrowser
     ? Math.floor(
         Math.min(
-          (window.innerWidth - (get(isMobile) ? 60 : 160)) / fieldWidth,
-          ((window.innerHeight-265) / fieldHeight)
+          (window.innerWidth - 60) / fieldWidth,
+          ((window.innerHeight-(get(isMobile) ? 300 : 265)) / fieldHeight)
         )
       )
     : 35;
