@@ -15,16 +15,17 @@ type Config = {
   lineWidth:number//сколько пикселей толщина линни
   pointWidth:number//сколько пикселей толщина точки
 };
+import { isMobile } from "../stores/isMobile";
+import { get } from 'svelte/store';
 export function createConfig(): Config {
   const fieldWidth = 16;
   const fieldHeight = 16;
 
   const isBrowser = typeof window !== 'undefined';
-
   const cellSize = isBrowser
     ? Math.floor(
         Math.min(
-          (window.innerWidth-60) / fieldWidth,
+          (window.innerWidth - (get(isMobile) ? 60 : 160)) / fieldWidth,
           ((window.innerHeight-265) / fieldHeight)
         )
       )
