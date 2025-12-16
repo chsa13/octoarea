@@ -1,16 +1,19 @@
+<script lang="ts">
+  import { isMobile } from '../stores/isMobile';
+</script>
+
 <style>
-  .rules{
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
-    padding-top: 30px;
+  p{
     text-align: start;
-    padding-bottom: 8px;
     min-width: 300px;
   }
+  p.mobile{
+    padding-top: 0px;
+  }
 </style>
-<div class="rules">
-  <div><b>Цель:</b> построить треугольник c наибольшей возможной площадью.</div>
-  <div><b>Правило:</b> красные точки не должны лежать внутри треугольника.</div>
-  <div><b>Как играть:</b> ставь 3 точки на поле и двигай их.</div>
-</div>
+
+<p class="rules" class:mobile={$isMobile}>
+  <span><b>Цель:</b> построить треугольник c наибольшей возможной площадью.</span><br>
+  <span><b>Правило:</b> красные точки не должны лежать внутри треугольника.</span><br>
+  <span><b>Как играть:</b> ставь 3 точки на поле и двигай их.</span><br>
+</p>

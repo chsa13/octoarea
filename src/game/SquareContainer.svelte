@@ -158,12 +158,14 @@ function onPointerMove(event: MouseEvent | TouchEvent){
   }
 }
 </script>
+
 <style>
   canvas{
     border: 2px solid black;
     touch-action: none; /* запрещает скролл/зум/refresh жестами над канвой */
   }
 </style>
+
 <canvas 
   bind:this={canvas}
   onclick= {(event)=>{handleCanvasClick(event, canvas, cells)}}

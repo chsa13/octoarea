@@ -25,7 +25,7 @@ export function createConfig(): Config {
     ? Math.floor(
         Math.min(
           (window.innerWidth-60) / fieldWidth,
-          (window.innerHeight-270) / fieldHeight
+          ((window.innerHeight-259) / fieldHeight)
         )
       )
     : 35;

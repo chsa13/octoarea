@@ -1,32 +1,31 @@
 <script lang="ts">
-  import ModeSelectionMenu from "./ModeSelectionMenu.svelte";
   import GameContainer from "./GameContainer.svelte";
   import Title from "./Title.svelte";
   import Rules from "./Rules.svelte";
-    import Footer from "./Footer.svelte";
+  import Footer from "./Footer.svelte";
+  import { isMobile } from "../stores/isMobile";
 </script>
+
 <style>
   .game-layout{
     justify-content: center;
     display: flex;
-    flex-direction: column;
     width: min-content;
     margin: 0 auto;
+    flex-direction: row-reverse;
+    gap:20px;
   }
-  @media(width > 820px){
-    .game-layout{
-      flex-direction: row-reverse;
-      /* flex-direction: row; */
-      gap:20px;
-    }
+  .mobile .game-layout{
+    flex-direction: column;
+    gap: 0;
   }
 </style>
-<div>
+
+<div class:mobile={$isMobile}>
   <Title/>
-  <!-- <ModeSelectionMenu/> -->
-   <div class="game-layout">
-     <Rules/>
+  <div class="game-layout">
+    <Rules/>
     <GameContainer/>
-   </div>
-   <Footer></Footer>
+  </div>
+  <Footer/>
 </div>

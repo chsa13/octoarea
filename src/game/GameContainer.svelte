@@ -13,23 +13,9 @@
   let MaxSquare = 0
   function handleMaxSquare(x:number){MaxSquare=x}
 </script>
-<style>
-</style>
+
 <div>
-  <UpTextContainer
-  square ={square}
-  MaxSquare ={MaxSquare}
-  />
-  <SquareContainer
-  {newToken}
-  {resetToken}
-  {copyToken}
-  {handleSquare}
-  {handleMaxSquare}
-  />
-  <ControlsContainer
-    onNew={handleNew}
-    onReset={handleReset}
-    onCopy={handleCopy}
-  />
+  <UpTextContainer {square} {MaxSquare}/>
+  <SquareContainer {newToken} {resetToken} {copyToken} {handleSquare} {handleMaxSquare}/>
+  <ControlsContainer onNew={handleNew} onReset={handleReset} onCopy={handleCopy}/>
 </div>
