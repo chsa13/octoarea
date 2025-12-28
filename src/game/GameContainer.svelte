@@ -14,6 +14,7 @@
   function handleMaxSquare(x:number){MaxSquare=x}
 </script>
 
+<svelte:window on:popstate={() =>handleReset()} />
 <div>
   <UpTextContainer {square} {MaxSquare}/>
   <SquareContainer {newToken} {resetToken} {copyToken} {handleSquare} {handleMaxSquare}/>

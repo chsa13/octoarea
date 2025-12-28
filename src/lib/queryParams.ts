@@ -18,6 +18,5 @@ export function setQuery(name: string, value?: string | number | boolean | null)
 		url.searchParams.set(name, String(value)); // set(name, value) [web:21]
 	}
 
-	// обновляет адресную строку без перезагрузки страницы [web:41]
-	history.replaceState(history.state, '', url);
+	history.pushState(history.state, '', url);
 }

@@ -138,9 +138,6 @@ export function drawTriangel(canvas: HTMLCanvasElement, fcoord1:FieldCoordinate,
                                                         fcoord2:FieldCoordinate, 
                                                         fcoord3:FieldCoordinate,
                                                         type:"normal"|"forbidden"|"max"|null){
-  drawLine(canvas, fcoord1, fcoord2);
-  drawLine(canvas, fcoord3, fcoord2);
-  drawLine(canvas, fcoord3, fcoord1);
   let color = "";
   if (type){
     if (type == "max"){color = 'rgba(66, 192, 34, 0.91)'};
@@ -148,6 +145,9 @@ export function drawTriangel(canvas: HTMLCanvasElement, fcoord1:FieldCoordinate,
     if (type == "forbidden"){color = 'rgba(255, 0, 0, 0.5)'};
     fillTriangel(canvas, fcoord1, fcoord2, fcoord3, color)
   }
+  drawLine(canvas, fcoord1, fcoord2);
+  drawLine(canvas, fcoord3, fcoord2);
+  drawLine(canvas, fcoord3, fcoord1);
 };
 export function fillTriangel(canvas: HTMLCanvasElement, fcoord1:FieldCoordinate, 
                                                         fcoord2:FieldCoordinate, 
@@ -173,7 +173,7 @@ export function drawByCells(canvas: HTMLCanvasElement, cells: Cells){
   if (!ctx){
     return;
   };
-  clear(canvas);
+  // clear(canvas);
   const TargetCells = GetTargetCells(cells);
   for (let TargetCell of TargetCells){
     drawPoint(canvas, TargetCell)

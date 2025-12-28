@@ -46,10 +46,7 @@ export function RandomNumber(start:number, end:number):number{
   return from + Math.floor(Math.random() * (to - from + 1));
 }
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//возможен баг если 2 точки сгенерируются в одном месте тогда может плохо будет
 export function GenerateForbiddenCells(cells: Cells, quantity:number, key:string|null|undefined): Cells{
-  console.log(key)
   if (key){
     let arr = decodePoints(key)
     if (!arr){return GenerateForbiddenCells(cells, quantity, "")}

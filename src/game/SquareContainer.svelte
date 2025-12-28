@@ -13,7 +13,6 @@
   let MaxSquare = 0;
   function Count(){
     clear(canvas);
-    drawByCells(canvas, cells);
     let targetCells = GetTargetCells(cells);
     if (targetCells.length == 3){
       if (checkForbiddenCellsNotInTriangelFromCells(cells)){
@@ -31,6 +30,7 @@
         drawTriangel(canvas, targetCells[0], targetCells[1], targetCells[2], "forbidden");
       }
     }
+    drawByCells(canvas, cells);
   }
   onMount(()=>{
     ctx = setupCanvas(canvas, config.fieldWidth*config.cellSize, config.fieldHeight*config.cellSize);
@@ -63,6 +63,9 @@
     if (!ctx || !resetToken) return;
     resetToken;
     clear(canvas);
+    const key = getQuery("k");
+    const code = Start(key);
+    // setQuery("k", code);
     handleSquare(0)
     cells = clearTargetCells(cells);
     drawByCells(canvas, cells);

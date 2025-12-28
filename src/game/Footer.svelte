@@ -4,7 +4,7 @@
 </script>
 <style>
   footer{
-    margin: 15px 10px 10px 10px;
+    margin: 15px 10px 3px 10px;
     display: flex; 
     justify-content: space-between;
     font-size: 14px;

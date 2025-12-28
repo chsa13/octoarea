@@ -30,7 +30,7 @@ button:active{
   transform: translateY(1px);
 }
 .cont{
-  margin: 0 auto;
+  margin: 9px auto;
   width: max-content;
   display: flex;
   flex-direction: column;
