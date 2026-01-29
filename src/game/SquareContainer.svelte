@@ -166,7 +166,7 @@ function onPointerMove(event: MouseEvent | TouchEvent){
   canvas{
     border: 2px solid var(--line-game-color);
     touch-action: none;
-    height: calc(100vh - 322px);
+    height: calc(100vh - 324px);
   }
   canvas.mobile{
     min-width: 300px;
