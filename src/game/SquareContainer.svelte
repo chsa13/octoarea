@@ -36,7 +36,7 @@
   }
   onMount(()=>{
     const minSize = Math.min(window.innerWidth, window.innerHeight);
-    ctx = setupCanvas(canvas, minSize, minSize);
+    ctx = setupCanvas(canvas, minSize*2, minSize*2);
     if (!ctx){
       return;
     };
