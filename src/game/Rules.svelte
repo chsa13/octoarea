@@ -5,7 +5,7 @@
 <style>
   p{
     text-align: start;
-    min-width: 350px;
+    min-width: 300px;
     font-size: var(--font-size-normal);
   }
   p.mobile{
