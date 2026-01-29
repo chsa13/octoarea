@@ -23,7 +23,7 @@
   font-weight: var(--font-weight-normal);
   letter-spacing: var(--letter-spacing);
   line-height: var(--line-height-normal);
-  padding: 4px 12px;
+  padding: var(--s-1) var(--s-3);
 
   cursor: pointer;
   user-select: none;

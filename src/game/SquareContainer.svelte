@@ -167,9 +167,9 @@ function onPointerMove(event: MouseEvent | TouchEvent){
 
 <style>
   canvas{
-    border: 2px solid #031022;
+    border: 2px solid var(--line-game-color);
     touch-action: none; /* запрещает скролл/зум/refresh жестами над канвой */
-    height: calc(100vh - 315px);
+    height: calc(100vh - 322px);
   }
   canvas.mobile{
     min-width: 300px;

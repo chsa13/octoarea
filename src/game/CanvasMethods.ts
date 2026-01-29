@@ -1,4 +1,5 @@
 import { config } from "../lib/config";
+import { cssVar } from "../lib/utils";
 import { GetForbiddenCells, GetTargetCells, type Cells } from "./MathMethods"
 export type FieldCoordinate = {
   x:number,
@@ -67,11 +68,11 @@ export function drawField(canvas:HTMLCanvasElement){
   };
   const rect = canvas.getBoundingClientRect();
   const cellSize = canvas.width / 16;
-  ctx.fillStyle = "rgb(222, 243, 255)";
+  ctx.fillStyle = cssVar("--background-game-color");
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   for (let y = 0; y<=config.fieldHeight; y++){
     const py = y * cellSize;
-    ctx.strokeStyle = "#031022"
+    ctx.strokeStyle = cssVar("--line-game-color")
     ctx.lineWidth = config.lineWidth;
     ctx.beginPath();
     ctx.moveTo(0, py);
@@ -80,7 +81,7 @@ export function drawField(canvas:HTMLCanvasElement){
   };
   for (let x = 0; x<=config.fieldWidth; x++){
     const px = x * cellSize;
-    ctx.strokeStyle = "#031022"
+    ctx.strokeStyle = cssVar("--line-game-color")
     ctx.lineWidth = config.lineWidth;
     ctx.beginPath();
     ctx.moveTo(px, 0);
@@ -100,7 +101,7 @@ export function drawPoint(canvas: HTMLCanvasElement, coord:FieldCoordinate){
     return;
   };
   const ccoord = getCtxCoordinate(coord, canvas);
-  ctx.fillStyle = '#000';
+  ctx.fillStyle = cssVar("--line-game-color");
   ctx.beginPath();
   ctx.arc(ccoord.x, ccoord.y, config.pointWidth, 0, Math.PI * 2);
   ctx.fill();
@@ -114,7 +115,7 @@ export function drawForbiddenPoint(canvas: HTMLCanvasElement, coord:FieldCoordin
     return;
   };
   const ccoord = getCtxCoordinate(coord, canvas);
-  ctx.fillStyle = 'rgb(255, 0, 0)';
+  ctx.fillStyle = cssVar("--f-dot-game-color");
   ctx.beginPath();
   ctx.arc(ccoord.x, ccoord.y, config.pointWidth, 0, Math.PI * 2);
   ctx.fill();
@@ -132,7 +133,7 @@ export function drawLine(canvas: HTMLCanvasElement, fcoord1:FieldCoordinate, fco
   };
   const ccoord1 = getCtxCoordinate(fcoord1, canvas);
   const ccoord2 = getCtxCoordinate(fcoord2, canvas);
-  ctx.strokeStyle = "#000"
+  ctx.strokeStyle = cssVar("--line-game-color")
   ctx.lineWidth = config.lineWidth;
   ctx.beginPath();
   ctx.moveTo(ccoord1.x, ccoord1.y);
@@ -145,9 +146,9 @@ export function drawTriangel(canvas: HTMLCanvasElement, fcoord1:FieldCoordinate,
                                                         type:"normal"|"forbidden"|"max"|null){
   let color = "";
   if (type){
-    if (type == "max"){color = 'rgba(66, 192, 34, 0.91)'};
-    if (type == "normal"){color = 'rgba(49, 74, 133, 0.5)'};
-    if (type == "forbidden"){color = 'rgba(255, 0, 0, 0.5)'};
+    if (type == "max"){color = cssVar("--max-triangel-game-color")};
+    if (type == "normal"){color = cssVar('--normal-triangel-color')};
+    if (type == "forbidden"){color = cssVar("--forbidden-triangel-game-color")};
     fillTriangel(canvas, fcoord1, fcoord2, fcoord3, color)
   }
   drawLine(canvas, fcoord1, fcoord2);

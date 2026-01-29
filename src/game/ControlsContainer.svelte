@@ -10,17 +10,15 @@
 </script>
 <style>
 .cont{
-  margin: 9px auto;
+  margin: var(--s-2) auto;
   width: max-content;
   display: flex;
   flex-direction: column;
-  /* width: 100%; */
 }
 .row{
-  /* width: 100%; */
   justify-content: space-between;
   display: flex;
-  padding-bottom: 8px;
+  padding-bottom: var(--s-2);
 }
 </style>
 <div class="cont">

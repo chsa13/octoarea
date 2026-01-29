@@ -1,24 +1,4 @@
 :root {
-  --primary-color: #5556b0;
-  --link-color: #646cff;
-  --link-hover-color: #333dfa;
-  --text-color: #000b31;
-  --button-text-color: #cdf8ff;
-  --border-color: rgb(114, 115, 223);
-
-
-  --font-family: "Arial", sans-serif;
-  --font-weight-normal: 400;
-  --line-height-normal: 1.5;
-  --letter-spacing: 0.05em;
-  --font-size-small: 0.9rem;
-  --font-size-normal: 1em;
-  --font-size-xl: 3.5rem;
-  --font-size-xxl: 4.5rem
-}
-
-
-:root {
   font-family: var(--font-family);
   font-weight: var(--font-weight-normal);
   letter-spacing: var(--letter-spacing);
@@ -40,12 +20,6 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
 #app {
   width: 100%;
   padding: 0rem;

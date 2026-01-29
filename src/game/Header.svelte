@@ -8,7 +8,7 @@
     font-size: var(--font-size-xxl);
     font-weight: 600;
     color: var(--primary-color);
-    padding-bottom: 8px;
+    padding-bottom: var(--s-2);
     display: flex;
     align-items: center;
     justify-content: center;

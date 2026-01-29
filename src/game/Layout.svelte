@@ -9,7 +9,7 @@
 <style>
   .layout{
     min-height: 100vh;
-    background: linear-gradient(-15deg, rgb(219, 234, 254) 0%, rgb(176, 208, 255) 100%);
+    background: var(--background-gradient);
   }
   .game-layout{
     width: max-content;
@@ -18,7 +18,7 @@
     width: min-content;
     margin: 0 auto;
     flex-direction: row-reverse;
-    gap:20px;
+    gap:var(--s-5);
   }
   .mobile .game-layout{
     flex-direction: column;

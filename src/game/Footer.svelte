@@ -4,7 +4,7 @@
 </script>
 <style>
   footer{
-    padding: 15px 10px 8px 10px;
+    padding: var(--s-4) var(--s-3);
     display: flex; 
     justify-content: space-between;
     font-size: var(--font-size-small);
@@ -26,24 +26,24 @@
     text-align: left;
   }
   .repository-content svg{
-    margin: 3px; 
-    padding-right: 3px;
+    margin: var(--s-1); 
+    padding-right: var(--s-1);
   }
   .author-content{
     display: flex;
     align-items: center;
     justify-content: end;
-    gap: 8px;
+    gap: var(--s-2);
   }
   .social-links{
     display: flex;
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
   }
   .social-links li{
     display: inline-block;
-    margin-left: 5px;
+    margin-left: var(--s-1);
   }
   .mobile .author-content{
     flex-direction: column;

@@ -8,7 +8,7 @@
     display: flex;
     justify-content: space-between;
     font-size: var(--font-size-small);
-    padding-bottom: 8px;
+    padding-bottom: var(--s-2);
   }
 </style>
 

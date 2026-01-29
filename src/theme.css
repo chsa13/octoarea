@@ -1,0 +1,31 @@
+:root {
+  --background-gradient: linear-gradient(-15deg, rgb(219, 234, 254) 0%, rgb(176, 208, 255) 100%);
+  --primary-color: #5556b0;
+  --link-color: #646cff;
+  --link-hover-color: #333dfa;
+  --text-color: #000b31;
+  --button-text-color: #cdf8ff;
+  --border-color: rgb(114, 115, 223);
+  --background-game-color: rgb(222, 243, 255);
+  --line-game-color: rgb(0, 0, 0);
+  --f-dot-game-color: rgb(255, 0, 0);
+  --max-triangel-game-color: rgba(66, 192, 34, 0.91);
+  --normal-triangel-color: rgba(49, 74, 133, 0.5);
+  --forbidden-triangel-game-color: rgba(255, 0, 0, 0.5);
+
+
+  --font-family: "Arial", sans-serif;
+  --font-weight-normal: 400;
+  --line-height-normal: 1.5;
+  --letter-spacing: 0.02em;
+  --font-size-small: 0.9rem;
+  --font-size-normal: 1em;
+  --font-size-xl: 3.5rem;
+  --font-size-xxl: 4.5rem;
+
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+}
