@@ -101,9 +101,11 @@ export function drawPoint(canvas: HTMLCanvasElement, coord:FieldCoordinate){
     return;
   };
   const ccoord = getCtxCoordinate(coord, canvas);
+  const rect = canvas.getBoundingClientRect();
+  const pointScale = canvas.width/rect.width
   ctx.fillStyle = cssVar("--line-game-color");
   ctx.beginPath();
-  ctx.arc(ccoord.x, ccoord.y, config.pointWidth, 0, Math.PI * 2);
+  ctx.arc(ccoord.x, ccoord.y, pointScale*config.pointWidth, 0, Math.PI * 2);
   ctx.fill();
 };
 export function drawForbiddenPoint(canvas: HTMLCanvasElement, coord:FieldCoordinate){
@@ -115,9 +117,11 @@ export function drawForbiddenPoint(canvas: HTMLCanvasElement, coord:FieldCoordin
     return;
   };
   const ccoord = getCtxCoordinate(coord, canvas);
+  const rect = canvas.getBoundingClientRect();
+  const pointScale = canvas.width/rect.width
   ctx.fillStyle = cssVar("--f-dot-game-color");
   ctx.beginPath();
-  ctx.arc(ccoord.x, ccoord.y, config.pointWidth, 0, Math.PI * 2);
+  ctx.arc(ccoord.x, ccoord.y, pointScale*config.pointWidth, 0, Math.PI * 2);
   ctx.fill();
 };
 export function drawLine(canvas: HTMLCanvasElement, fcoord1:FieldCoordinate, fcoord2:FieldCoordinate){

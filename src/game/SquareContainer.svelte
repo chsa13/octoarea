@@ -6,7 +6,7 @@
   import { checkForbiddenCellsNotInTriangelFromCells, clearTargetCells, generateCells, GenerateForbiddenCells, GetForbiddenCells, GetMaxSquare, getSquareFromCoordinates, GetTargetCells, type Cells } from "./MathMethods";
   import { encodePoints } from "./Сoding";
   import { getQuery, setQuery } from "../lib/queryParams";
-  import { copyText, getCurrentUrl } from "../lib/utils";
+  import { copyText, getCurrentUrl, isMouseEvent } from "../lib/utils";
   import { isMobile } from "../stores/isMobile";
 
   let canvas:HTMLCanvasElement;
@@ -125,9 +125,6 @@ function onPointerUp(event: MouseEvent | TouchEvent){
     canvas.style.cursor = "grab"
   }
 }
-function isMouseEvent(e: Event): e is MouseEvent {
-    return e instanceof MouseEvent;
-  }
 function onPointerMove(event: MouseEvent | TouchEvent){
   if (isMouseEvent(event)){
     if (!(event.buttons & 1)){
@@ -168,7 +165,7 @@ function onPointerMove(event: MouseEvent | TouchEvent){
 <style>
   canvas{
     border: 2px solid var(--line-game-color);
-    touch-action: none; /* запрещает скролл/зум/refresh жестами над канвой */
+    touch-action: none;
     height: calc(100vh - 322px);
   }
   canvas.mobile{

@@ -29,5 +29,5 @@ export const config: Config = {
   fieldWidth:16,
   fieldHeight:16,
   lineWidth: 6,
-  pointWidth: 10,
+  pointWidth: 3.5,
 };;
