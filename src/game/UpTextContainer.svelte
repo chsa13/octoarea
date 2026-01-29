@@ -7,7 +7,7 @@
   div{
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
+    font-size: var(--font-size-small);
     padding-bottom: 8px;
   }
 </style>

@@ -2,11 +2,13 @@
   let {newToken,copyToken,resetToken, handleSquare, handleMaxSquare} = $props()
   import { onMount } from "svelte";
   import { config } from "../lib/config";
-  import { drawField, setupCanvas, clear, drawTriangel, drawByCells, drawPoint, getFieldCoordinateFromEvent, type FieldCoordinate, cellsEquality, drawForbiddenPoint } from "./CanvasMethods";
+  import { setupCanvas, clear, drawTriangel, drawByCells, drawPoint, getFieldCoordinateFromEvent, type FieldCoordinate, cellsEquality, drawForbiddenPoint } from "./CanvasMethods";
   import { checkForbiddenCellsNotInTriangelFromCells, clearTargetCells, generateCells, GenerateForbiddenCells, GetForbiddenCells, GetMaxSquare, getSquareFromCoordinates, GetTargetCells, type Cells } from "./MathMethods";
   import { encodePoints } from "./Сoding";
   import { getQuery, setQuery } from "../lib/queryParams";
-    import { copyText, getCurrentUrl } from "../lib/utils";
+  import { copyText, getCurrentUrl } from "../lib/utils";
+  import { isMobile } from "../stores/isMobile";
+
   let canvas:HTMLCanvasElement;
   let ctx: CanvasRenderingContext2D | null = null
   let cells: Cells = generateCells();
@@ -33,7 +35,8 @@
     drawByCells(canvas, cells);
   }
   onMount(()=>{
-    ctx = setupCanvas(canvas, config.fieldWidth*config.cellSize, config.fieldHeight*config.cellSize);
+    const minSize = Math.min(window.innerWidth, window.innerHeight);
+    ctx = setupCanvas(canvas, minSize, minSize);
     if (!ctx){
       return;
     };
@@ -164,12 +167,18 @@ function onPointerMove(event: MouseEvent | TouchEvent){
 
 <style>
   canvas{
-    border: 2px solid black;
+    border: 2px solid #093061;
     touch-action: none; /* запрещает скролл/зум/refresh жестами над канвой */
+    height: calc(100vh - 315px);
+  }
+  canvas.mobile{
+    min-width: 300px;
+    max-width: 85vw;
+    height: unset;
   }
 </style>
 
-<canvas 
+<canvas class:mobile={$isMobile}
   bind:this={canvas}
   onclick= {(event)=>{handleCanvasClick(event, canvas, cells)}}
   onmousedown={onPointerDown}

@@ -1,34 +1,14 @@
 <script lang="ts">
-  let {onNew, onReset, onCopy} = $props();
+  import Button from "../components/Button.svelte";
+  import type { MouseEventHandler } from 'svelte/elements';
+  interface Props{
+    onNew:  MouseEventHandler<HTMLButtonElement>;
+    onReset:  MouseEventHandler<HTMLButtonElement>;
+    onCopy:  MouseEventHandler<HTMLButtonElement>;
+  }
+  let {onNew, onReset, onCopy}:Props = $props();
 </script>
 <style>
-button{
-  appearance: none;
-  border: 1px solid rgba(0, 0, 0, 0.563);
-  border-radius: 5px;               /* угловато */
-  background: rgb(231, 231, 231);
-  color: black;
-
-  box-shadow: 0 1px 0 rgba(0,0,0,.18), 0 6px 18px rgba(0,0,0,.18);;
-
-  padding: 5px 14px;
-  font: 600 14px/1.1 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-  letter-spacing: 0.02em;
-  text-transform: none;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  cursor: pointer;
-  user-select: none;
-
-  transition: background-color .15s ease, color .15s ease, border-color .15s ease, transform .05s ease;
-}
-button:active{
-  transform: translateY(1px);
-}
 .cont{
   margin: 9px auto;
   width: max-content;
@@ -45,10 +25,10 @@ button:active{
 </style>
 <div class="cont">
   <div class="row">
-    <button onclick={onNew}>Новая задача</button>
-    <button onclick={onReset}>Заново</button>
+    <Button onclick={onNew}>Новая задача</Button>
+    <Button onclick={onReset}>Заново</Button>
   </div>
   <div class="row">
-    <button onclick={onCopy} title="Будет скопированна сслыка на задачу">Скопировать ссылку на задачу</button>
+    <Button onclick={onCopy} title="Будет скопированна сслыка на задачу">Скопировать ссылку на задачу</Button>
   </div>
 </div>

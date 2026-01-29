@@ -12,9 +12,12 @@
   p.mobile{
     flex-direction: column;
   }
+  .value{
+    font-weight: bold;
+  }
 </style>
 
 <p class:mobile={$isMobile}>
   <span>{text}:&nbsp;</span>
-  <span> {square*2}</span>
+  <span class="value"> {square*2}</span>
 </p>

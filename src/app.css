@@ -1,24 +1,37 @@
 :root {
-  font-family: "Inter", sans-serif;
-  /* line-height: 1.5; */
-  font-weight: 400;
+  --primary-color: #5556b0;
+  --link-color: #646cff;
+  --link-hover-color: #333dfa;
+  --text-color: #000b31;
+  --button-text-color: #cdf8ff;
+  --border-color: rgb(114, 115, 223);
 
+
+  --font-family: "Arial", sans-serif;
+  --font-weight-normal: 400;
+  --line-height-normal: 1.5;
+  --letter-spacing: 0.05em;
+  --font-size-small: 0.9rem;
+  --font-size-normal: 1em;
+  --font-size-xl: 3.5rem;
+  --font-size-xxl: 4.5rem
+}
+
+
+:root {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--letter-spacing);
+  line-height: var(--line-height-normal);
+  font-size: var(--font-size-normal);
+  color: var(--text-color);
+  appearance: none;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   display: flex;
@@ -31,10 +44,6 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}
-
-.card {
-  padding: 2em;
 }
 
 #app {

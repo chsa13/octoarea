@@ -8,7 +8,10 @@ type CtxCoordinate = {
   x:number,
   y:number,
 };
-export function getFieldCoordinateFromEvent(event:MouseEvent | TouchEvent, canvas:HTMLCanvasElement):FieldCoordinate{
+export function getFieldCoordinateFromEvent(
+  event: MouseEvent | TouchEvent, 
+  canvas: HTMLCanvasElement
+): FieldCoordinate {
   const rect = canvas.getBoundingClientRect();
 
   let clientX: number;
@@ -26,34 +29,34 @@ export function getFieldCoordinateFromEvent(event:MouseEvent | TouchEvent, canva
   const x = clientX - rect.left;
   const y = clientY - rect.top;
 
-  let cellX = Math.floor(x / config.cellSize);
-  if (cellX<0) {cellX = 0};
-  if (cellX>15) {cellX = 15};
-  let cellY = Math.floor(y / config.cellSize);
-  if (cellY<0) {cellY = 0};
-  if (cellY>15) {cellY = 15};
-  return {x: cellX, y: cellY}
-};
-function getCtxCoordinate(fcoord:FieldCoordinate):CtxCoordinate{
+  // Вычисляем размер ячейки на основе размеров canvas
+  const cellSize = rect.width / 16;
+
+  let cellX = Math.floor(x / cellSize);
+  if (cellX < 0) { cellX = 0 }
+  if (cellX > 15) { cellX = 15 }
+  
+  let cellY = Math.floor(y / cellSize);
+  if (cellY < 0) { cellY = 0 }
+  if (cellY > 15) { cellY = 15 }
+  
+  return { x: cellX, y: cellY };
+}
+
+function getCtxCoordinate(fcoord:FieldCoordinate, canvas: HTMLCanvasElement):CtxCoordinate{
+  const rect = canvas.getBoundingClientRect();
+  const cellSize = canvas.width / 16;
   return {
-    x: fcoord.x*config.cellSize + config.cellSize/2,
-    y: fcoord.y*config.cellSize + config.cellSize/2
+    x: fcoord.x*cellSize + cellSize/2,
+    y: fcoord.y*cellSize + cellSize/2
   };
 };
 export function setupCanvas(canvas: HTMLCanvasElement, width: number, height: number) {
-  const dpr = (window.devicePixelRatio || 1)*3;
-
-  // логический размер (как ты хочешь видеть в макете)
-  canvas.style.width = width + 'px';
-  canvas.style.height = height + 'px';
-
-  // реальный размер в пикселях с учётом DPR
-  canvas.width = width * dpr;
-  canvas.height = height * dpr;
+  canvas.width = width;
+  canvas.height = height;
 
   const ctx = canvas.getContext('2d');
   if (!ctx) return null;
-  ctx.scale(dpr, dpr);
 
   return ctx;
 }
@@ -62,11 +65,13 @@ export function drawField(canvas:HTMLCanvasElement){
   if (!ctx){
     return;
   };
-  ctx.fillStyle = "#ffffffff";
+  const rect = canvas.getBoundingClientRect();
+  const cellSize = canvas.width / 16;
+  ctx.fillStyle = "rgb(182, 216, 255)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   for (let y = 0; y<=config.fieldHeight; y++){
-    const py = y * config.cellSize;
-    ctx.strokeStyle = "#000"
+    const py = y * cellSize;
+    ctx.strokeStyle = "#093061"
     ctx.lineWidth = config.lineWidth;
     ctx.beginPath();
     ctx.moveTo(0, py);
@@ -74,8 +79,8 @@ export function drawField(canvas:HTMLCanvasElement){
     ctx.stroke();
   };
   for (let x = 0; x<=config.fieldWidth; x++){
-    const px = x * config.cellSize;
-    ctx.strokeStyle = "#000"
+    const px = x * cellSize;
+    ctx.strokeStyle = "#093061"
     ctx.lineWidth = config.lineWidth;
     ctx.beginPath();
     ctx.moveTo(px, 0);
@@ -94,7 +99,7 @@ export function drawPoint(canvas: HTMLCanvasElement, coord:FieldCoordinate){
   if (coord.x>16 || coord.y>16){
     return;
   };
-  const ccoord = getCtxCoordinate(coord);
+  const ccoord = getCtxCoordinate(coord, canvas);
   ctx.fillStyle = '#000';
   ctx.beginPath();
   ctx.arc(ccoord.x, ccoord.y, config.pointWidth, 0, Math.PI * 2);
@@ -108,8 +113,8 @@ export function drawForbiddenPoint(canvas: HTMLCanvasElement, coord:FieldCoordin
   if (coord.x>16 || coord.y>16){
     return;
   };
-  const ccoord = getCtxCoordinate(coord);
-  ctx.fillStyle = '#ff0000ff';
+  const ccoord = getCtxCoordinate(coord, canvas);
+  ctx.fillStyle = 'rgb(255, 0, 0)';
   ctx.beginPath();
   ctx.arc(ccoord.x, ccoord.y, config.pointWidth, 0, Math.PI * 2);
   ctx.fill();
@@ -125,8 +130,8 @@ export function drawLine(canvas: HTMLCanvasElement, fcoord1:FieldCoordinate, fco
   if (fcoord2.x>16 || fcoord2.y>16){
     return;
   };
-  const ccoord1 = getCtxCoordinate(fcoord1);
-  const ccoord2 = getCtxCoordinate(fcoord2);
+  const ccoord1 = getCtxCoordinate(fcoord1, canvas);
+  const ccoord2 = getCtxCoordinate(fcoord2, canvas);
   ctx.strokeStyle = "#000"
   ctx.lineWidth = config.lineWidth;
   ctx.beginPath();
@@ -141,8 +146,8 @@ export function drawTriangel(canvas: HTMLCanvasElement, fcoord1:FieldCoordinate,
   let color = "";
   if (type){
     if (type == "max"){color = 'rgba(66, 192, 34, 0.91)'};
-    if (type == "normal"){color = 'rgba(6, 70, 122, 0.5)'};
-    if (type == "forbidden"){color = 'rgba(255, 0, 0, 0.5)'};
+    if (type == "normal"){color = 'rgba(4, 46, 80, 0.5)'};
+    if (type == "forbidden"){color = 'rgba(255, 0, 0, 0.66)'};
     fillTriangel(canvas, fcoord1, fcoord2, fcoord3, color)
   }
   drawLine(canvas, fcoord1, fcoord2);
@@ -157,9 +162,9 @@ export function fillTriangel(canvas: HTMLCanvasElement, fcoord1:FieldCoordinate,
   if (!ctx){
     return;
   };
-  const ccoord1 = getCtxCoordinate(fcoord1);
-  const ccoord2 = getCtxCoordinate(fcoord2);
-  const ccoord3 = getCtxCoordinate(fcoord3);
+  const ccoord1 = getCtxCoordinate(fcoord1, canvas);
+  const ccoord2 = getCtxCoordinate(fcoord2, canvas);
+  const ccoord3 = getCtxCoordinate(fcoord3, canvas);
   ctx.beginPath();
   ctx.moveTo(ccoord1.x, ccoord1.y);
   ctx.lineTo(ccoord2.x, ccoord2.y);

@@ -4,10 +4,10 @@
 </script>
 <style>
   footer{
-    margin: 15px 10px 3px 10px;
+    padding: 15px 10px 8px 10px;
     display: flex; 
     justify-content: space-between;
-    font-size: 14px;
+    font-size: var(--font-size-small);
   }
   p{
     margin: 0;
@@ -16,8 +16,11 @@
     display: inline-flex; 
     align-items: flex-start;
     font-weight: 500;
-    color: #646cff;
-    text-decoration: inherit;
+    color: var(--link-color);
+    text-decoration: none;
+  }
+  a:hover{
+    color: var(--link-hover-color);
   }
   .repository-content p{
     text-align: left;
@@ -58,7 +61,7 @@
   </div>
   <div class="author-content">
     <p>© 2025 {config.author.name}
-      <a href={config.license.url} target="_blank" rel="noopener noreferrer">{config.license.name}.</a>
+      <a href={config.license.url} target="_blank" rel="noopener noreferrer">{config.license.name}</a>.
     </p>
     <ul class="social-links"><span>Контакты:</span>
       <li>
