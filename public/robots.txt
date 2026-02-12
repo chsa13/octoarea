@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chsa13.github.io/octoarea/sitemap.xml
