@@ -68,7 +68,7 @@ export function GenerateForbiddenCells(cells: Cells, quantity:number, key:string
   }
   return cells
 }
-function checkForbiddenCellNotInTriangel( ForbiddenCell:FieldCoordinate, 
+function checkForbiddenCellNotInTriangle( ForbiddenCell:FieldCoordinate, 
                                           TargetCell1: FieldCoordinate, 
                                           TargetCell2:FieldCoordinate, 
                                           TargetCell3:FieldCoordinate):boolean{
@@ -77,24 +77,24 @@ function checkForbiddenCellNotInTriangel( ForbiddenCell:FieldCoordinate,
   getSquareFromCoordinates(ForbiddenCell, TargetCell1, TargetCell3) + 
   getSquareFromCoordinates(ForbiddenCell, TargetCell1, TargetCell2));
 };
-export function checkForbiddenCellsNotInTriangel( ForbiddenCells: FieldCoordinate[],
+export function checkForbiddenCellsNotInTriangle( ForbiddenCells: FieldCoordinate[],
                                                   TargetCell1: FieldCoordinate, 
                                                   TargetCell2: FieldCoordinate, 
                                                   TargetCell3: FieldCoordinate, 
                                                   ): boolean{
   let ans:boolean = true;
   for(let ForbiddenCell of ForbiddenCells){
-    if (!checkForbiddenCellNotInTriangel(ForbiddenCell, TargetCell1, TargetCell2, TargetCell3)){
+    if (!checkForbiddenCellNotInTriangle(ForbiddenCell, TargetCell1, TargetCell2, TargetCell3)){
       ans = false;
       break;
     };
   }
   return ans;
 }
-export function checkForbiddenCellsNotInTriangelFromCells(cells: Cells):boolean{
+export function checkForbiddenCellsNotInTriangleFromCells(cells: Cells):boolean{
   let ForbiddenCells = GetForbiddenCells(cells);
   let TargetCells = GetTargetCells(cells);
-  return checkForbiddenCellsNotInTriangel(ForbiddenCells, TargetCells[0], TargetCells[1], TargetCells[2]);
+  return checkForbiddenCellsNotInTriangle(ForbiddenCells, TargetCells[0], TargetCells[1], TargetCells[2]);
 };
 export function clearTargetCells(cells: Cells): Cells{
   let TargetCells = GetTargetCells(cells);
@@ -114,7 +114,7 @@ export function clearTargetCells(cells: Cells): Cells{
 //         for(let y2 = 0; y2<config.fieldWidth; y2++){
 //           for(let x3 = 0; x3<config.fieldHeight; x3++){
 //             for(let y3 = 0; y3<config.fieldWidth; y3++){
-//               if (checkForbiddenCellsNotInTriangel(ForbiddenCells, 
+//               if (checkForbiddenCellsNotInTriangle(ForbiddenCells, 
 //                 {x:x1, y:y1},
 //                 {x:x2, y:y2},
 //                 {x:x3, y:y3},
@@ -165,7 +165,7 @@ export function GetMaxSquare(cells: Cells): number{
                                               {x:x2, y:y2},
                                               {x:x3, y:y3})
     if (sq > ans){
-          if (checkForbiddenCellsNotInTriangel(ForbiddenCells, 
+          if (checkForbiddenCellsNotInTriangle(ForbiddenCells, 
             {x:x1, y:y1},
             {x:x2, y:y2},
             {x:x3, y:y3},

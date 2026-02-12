@@ -29,7 +29,7 @@ html.theme-vanila{
   --background-game-color: var(--background-color);
   --line-game-color: var(--text-color);
   --f-dot-game-color: var(--primary-color);
-  --max-triangel-game-color: #a1e84fb5;
-  --normal-triangel-color:  #61543c8e;
-  --forbidden-triangel-game-color: #e8594fb6;
+  --max-triangle-game-color: #a1e84fb5;
+  --normal-triangle-color:  #61543c8e;
+  --forbidden-triangle-game-color: #e8594fb6;
 }

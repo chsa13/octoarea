@@ -2,8 +2,8 @@
   let {newToken,copyToken,resetToken, handleSquare, handleMaxSquare} = $props()
   import { onMount } from "svelte";
   import { config } from "../lib/config";
-  import { setupCanvas, clear, drawTriangel, drawByCells, drawPoint, getFieldCoordinateFromEvent, type FieldCoordinate, cellsEquality, drawForbiddenPoint } from "./CanvasMethods";
-  import { checkForbiddenCellsNotInTriangelFromCells, clearTargetCells, generateCells, GenerateForbiddenCells, GetForbiddenCells, GetMaxSquare, getSquareFromCoordinates, GetTargetCells, type Cells } from "./MathMethods";
+  import { setupCanvas, clear, drawTriangle, drawByCells, drawPoint, getFieldCoordinateFromEvent, type FieldCoordinate, cellsEquality, drawForbiddenPoint } from "./CanvasMethods";
+  import { checkForbiddenCellsNotInTriangleFromCells, clearTargetCells, generateCells, GenerateForbiddenCells, GetForbiddenCells, GetMaxSquare, getSquareFromCoordinates, GetTargetCells, type Cells } from "./MathMethods";
   import { encodePoints } from "./Сoding";
   import { getQuery, setQuery } from "../lib/queryParams";
   import { copyText, getCurrentUrl, isMouseEvent } from "../lib/utils";
@@ -17,19 +17,19 @@
     clear(canvas);
     let targetCells = GetTargetCells(cells);
     if (targetCells.length == 3){
-      if (checkForbiddenCellsNotInTriangelFromCells(cells)){
+      if (checkForbiddenCellsNotInTriangleFromCells(cells)){
         const square = getSquareFromCoordinates(targetCells[0], targetCells[1], targetCells[2])
         handleSquare(square)
         if (MaxSquare == square){
-          drawTriangel(canvas, targetCells[0], targetCells[1], targetCells[2], "max");
+          drawTriangle(canvas, targetCells[0], targetCells[1], targetCells[2], "max");
 
         }
         else{
-          drawTriangel(canvas, targetCells[0], targetCells[1], targetCells[2], "normal");
+          drawTriangle(canvas, targetCells[0], targetCells[1], targetCells[2], "normal");
         }
       } else {
         handleSquare(0);
-        drawTriangel(canvas, targetCells[0], targetCells[1], targetCells[2], "forbidden");
+        drawTriangle(canvas, targetCells[0], targetCells[1], targetCells[2], "forbidden");
       }
     }
     drawByCells(canvas, cells);

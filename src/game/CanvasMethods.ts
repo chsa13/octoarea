@@ -144,22 +144,22 @@ export function drawLine(canvas: HTMLCanvasElement, fcoord1:FieldCoordinate, fco
   ctx.lineTo(ccoord2.x, ccoord2.y);
   ctx.stroke();
 };
-export function drawTriangel(canvas: HTMLCanvasElement, fcoord1:FieldCoordinate, 
+export function drawTriangle(canvas: HTMLCanvasElement, fcoord1:FieldCoordinate, 
                                                         fcoord2:FieldCoordinate, 
                                                         fcoord3:FieldCoordinate,
                                                         type:"normal"|"forbidden"|"max"|null){
   let color = "";
   if (type){
-    if (type == "max"){color = cssVar("--max-triangel-game-color")};
-    if (type == "normal"){color = cssVar('--normal-triangel-color')};
-    if (type == "forbidden"){color = cssVar("--forbidden-triangel-game-color")};
-    fillTriangel(canvas, fcoord1, fcoord2, fcoord3, color)
+    if (type == "max"){color = cssVar("--max-triangle-game-color")};
+    if (type == "normal"){color = cssVar('--normal-triangle-color')};
+    if (type == "forbidden"){color = cssVar("--forbidden-triangle-game-color")};
+    fillTriangle(canvas, fcoord1, fcoord2, fcoord3, color)
   }
   drawLine(canvas, fcoord1, fcoord2);
   drawLine(canvas, fcoord3, fcoord2);
   drawLine(canvas, fcoord3, fcoord1);
 };
-export function fillTriangel(canvas: HTMLCanvasElement, fcoord1:FieldCoordinate, 
+export function fillTriangle(canvas: HTMLCanvasElement, fcoord1:FieldCoordinate, 
                                                         fcoord2:FieldCoordinate, 
                                                         fcoord3:FieldCoordinate,
                                                         color:string){
