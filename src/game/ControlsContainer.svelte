@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { lang } from "../stores/lang";
   import Button from "../components/Button.svelte";
   import type { MouseEventHandler } from 'svelte/elements';
   interface Props{
@@ -23,10 +24,10 @@
 </style>
 <div class="cont">
   <div class="row">
-    <Button onclick={onNew}>Новая задача</Button>
-    <Button onclick={onReset}>Заново</Button>
+    <Button onclick={onNew}>{$lang("NewTask")}</Button>
+    <Button onclick={onReset}>{$lang("Restart")}</Button>
   </div>
   <div class="row">
-    <Button onclick={onCopy} title="Будет скопированна сслыка на задачу">Скопировать ссылку на задачу</Button>
+    <Button onclick={onCopy}>{$lang("CopyLink")}</Button>
   </div>
 </div>

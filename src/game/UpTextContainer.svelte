@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { lang } from "../stores/lang";
   let {square, MaxSquare} = $props();
   import SquareP from "./SquareP.svelte";
 </script>
@@ -13,6 +14,6 @@
 </style>
 
 <div>
-  <SquareP text="Текущая площадь" square={square}/>
-  <SquareP text="Возможная площадь" square={MaxSquare}/>
+  <SquareP text={$lang("CurrentSquare")} square={square}/>
+  <SquareP text={$lang('MaxSquare')} square={MaxSquare}/>
 </div>

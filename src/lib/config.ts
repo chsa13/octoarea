@@ -3,7 +3,6 @@ type Config = {
   author:{
     github:string
     telegram: string
-    name:string
   }
   license: {
     name: string
@@ -20,7 +19,6 @@ export const config: Config = {
   author:{
     github:"https://github.com/Chsa13",
     telegram: "https://t.me/chsa13",
-    name:"Чернов Семён",
   },
   license: {
     name: "MIT License",

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { lang } from "../stores/lang";
   import { isMobile } from '../stores/isMobile';
 </script>
 
@@ -14,7 +15,7 @@
 </style>
 
 <p class:mobile={$isMobile}>
-  <span><b>Цель:</b> построить треугольник c максимальной площадью.</span><br>
-  <span><b>Правило:</b> красные точки не должны лежать внутри треугольника.</span><br>
-  <span><b>Как играть:</b> ставь 3 точки на поле и двигай их.</span><br>
+  <span><b>{$lang("Goal")}:</b> {$lang("GoalText")}.</span><br>
+  <span><b>{$lang("Rule")}:</b> {$lang("RuleText")}.</span><br>
+  <span><b>{$lang("Play")}:</b> {$lang("PlayText")}.</span><br>
 </p>
