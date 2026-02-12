@@ -1,5 +1,6 @@
 <script lang="ts">
     import { isMobile } from "../stores/isMobile";
+    import LanguageSwitcher from "../components/LanguageSwitcher.svelte";
 </script>
 <style>
   header{
@@ -18,5 +19,5 @@
     height: unset;
   }
 </style>
-
 <header class:mobile={$isMobile}>Octoarea</header>
+<!-- <LanguageSwitcher></LanguageSwitcher> -->
